@@ -1,23 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-function contact() {
-    const [name, setname] = usestate('')
-    const [email, setemail] = usestate('')
-    const [message, setmessage] = usestate('')
-    const handlesubmit = () => { }
-    return (
-        <div>
-            <form onsubmit={handleSubmit}>
-                <input type="text" placeholder='Enter you name' value={name} onChange={(e) => setname(e.target.value)} />
-                <input type="email" placeholder='Enter you email' value={email} onChange={(e) => setemail(e.target.value)} />
-                <textarea placeholder='Enter you message' value={message} onChange={(e) => setmessage(e.target.value)}></textarea>
-                <button type='submit'>Submit</button>
+function Contact() {
+    const [name,setName]=useState('')
+    const [email,setEmail]=useState('')
+    const [message,setMessage]=useState('')
 
-            </form>
-        </div>
-    )
-
-
+    const handleSubmit=(data)=>{
+        event.preventDefault()
+        if(!email.endsWith("krmu.edu.in")) {
+            alert("Invalid Email")
+            return
+        }
+        console.log(data)
+        console.log(name,email,message)
+    }
+  return (
+    <div>
+      <form onSubmit={()=>handleSubmit("Sample String")}>
+        <input type="text" placeholder='Enter your name' value={name} onChange={(e)=>setName(e.target.value)}/>
+        <input type="email" placeholder='Enter your email' value={email}  onChange={(e)=>setEmail(e.target.value)}/>
+        <textarea placeholder='Enter your message' value={message}  onChange={(e)=>setMessage(e.target.value)}/>
+        <button type='submit'>Submit</button>
+      </form>
+    </div>
+  )
 }
 
-export default App
+export default Contact
