@@ -3,22 +3,29 @@ import './App.css'
 import TopBar from './component/TopBar'
 import Article from './component/Article'
 import HomePage from './component/HomePage'
-import { Routes, Route } from 'react-router-dom'
+import Contact from './component/Contact'
+import { Route, Routes } from 'react-router-dom'
+import Profile from './component/Profile'
+import { UserContext } from './UserContext'
+import Search from './component/Search'
 
 function App() {
 
   const [title, setTitle] = useState("Sample Title")
+  const name = "Alex"
 
 
   return (
-
     <>
-      <Routes>
-        <Route path='/' element={<><HomePage /><TopBar /></>} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/article' element={<Article title={title} />} />
-      </Routes>
-
+      <UserContext.Provider value={name}>
+        <Routes>
+          <Route path="/" element={<><HomePage /></>} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/article" element={<Article title={title} />} />
+          <Route path='/profile/:username' element={<Profile />} />
+          <Route path='/search' element={<Search />} />
+        </Routes>
+      </UserContext.Provider>
 
     </>
   )
